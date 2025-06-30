@@ -2,8 +2,19 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { movie } from "@/types/movie";
 
-export default function MovieCard({ movie }: { movie: any }) {
+import Image from "next/image"; // at the top of the file
+
+
+interface Movie {
+  Title: string;
+  Year: string;
+  imdbID: string;
+  Poster: string;
+}
+
+export default function MovieCard({ movie }: { movie: movie }) {
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
@@ -14,10 +25,12 @@ export default function MovieCard({ movie }: { movie: any }) {
       <Link href={`/movies/${movie.imdbID}`}>
         <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition duration-300">
           <figure>
-            <img
+            <Image
               src={movie.Poster !== "N/A" ? movie.Poster : "/no-image.png"}
               alt={movie.Title}
-              className="h-80 object-cover w-full"
+              width={300}
+              height={400}
+              className="h-80 w-full object-cover"
             />
           </figure>
           <div className="card-body p-4">

@@ -1,5 +1,7 @@
 "use client";
 
+import { movie } from "@/types/movie"; // ✅ Correct import: capital 'M'
+
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
@@ -12,7 +14,7 @@ import DarkModeToggle from "@/components/DarkModeToggle";
 export default function MoviesPage() {
   const dispatch = useDispatch();
   const query = useSelector((state: RootState) => state.movies.searchQuery);
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<movie[]>([]); // ✅ Properly typed
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -46,7 +48,7 @@ export default function MoviesPage() {
         )}
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-6 mt-10">
-          {movies.map((movie: any) => (
+          {movies.map((movie: movie) => (
             <MovieCard key={movie.imdbID} movie={movie} />
           ))}
         </div>
