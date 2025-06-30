@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { movie } from "@/types/movie";
+// import { movie } from "@/types/movie";
 
 import Image from "next/image"; // at the top of the file
 
@@ -14,7 +14,7 @@ interface Movie {
   Poster: string;
 }
 
-export default function MovieCard({ movie }: { movie: movie }) {
+export default function MovieCard({ movie }: { movie: Movie }) {
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}

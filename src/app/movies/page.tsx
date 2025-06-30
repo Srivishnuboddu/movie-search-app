@@ -3,16 +3,14 @@
 import { movie } from "@/types/movie"; // ✅ Correct import: capital 'M'
 
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { setSearchQuery } from "@/redux/movieSlice";
 import { searchMovies } from "@/lib/api";
 import MovieCard from "@/components/MovieCard";
 import SearchBar from "@/components/SearchBar";
 import DarkModeToggle from "@/components/DarkModeToggle";
 
 export default function MoviesPage() {
-  const dispatch = useDispatch();
   const query = useSelector((state: RootState) => state.movies.searchQuery);
   const [movies, setMovies] = useState<movie[]>([]); // ✅ Properly typed
   const [loading, setLoading] = useState(false);

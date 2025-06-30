@@ -1,13 +1,24 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import Image from "next/image";
 import { getMovieDetails } from "@/lib/api";
 import Rating from "@/components/Rating";
 
+interface Movie {
+  Title: string;
+  Year: string;
+  Genre: string;
+  Director: string;
+  Actors: string;
+  Plot: string;
+  Poster: string;
+  imdbID: string;
+}
+
 export default function MovieDetailsPage() {
   const { id } = useParams();
-  const [movie, setMovie] = useState<any>(null);
+  const [movie, setMovie] = useState<Movie | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -26,10 +37,12 @@ export default function MovieDetailsPage() {
   return (
     <div className="p-6 max-w-4xl mx-auto">
       <div className="flex flex-col md:flex-row gap-6">
-        <img
+        <Image
           src={movie.Poster !== "N/A" ? movie.Poster : "/no-image.png"}
           alt={movie.Title}
-          className="w-full md:w-60 rounded shadow"
+          width={240}
+          height={360}
+          className="w-full md:w-60 rounded shadow object-cover"
         />
 
         <div>
